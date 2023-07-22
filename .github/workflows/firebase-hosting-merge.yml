@@ -19,6 +19,7 @@ jobs:
           node parse.js プライバシ・ポリシー privacy_policy
           node parse.js 利用規約 terms_of_use
           node parse.js トップ index
+          echo ${{ secrets.APP_ADS_TXT }} > public/app-ads.txt
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
