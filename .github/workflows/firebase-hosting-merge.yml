@@ -7,20 +7,26 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node
         uses: actions/setup-node@v3.5.1
         with:
           node-version-file: ".node-version"
           cache: "npm"
           cache-dependency-path: "package-lock.json"
-      - run: |
+
+      - name: Create html files
+        run: |
           npm install
           node parse.js プライバシ・ポリシー privacy_policy
           node parse.js 利用規約 terms_of_use
           node parse.js トップ index
           echo ${{ secrets.APP_ADS_TXT }} > public/app-ads.txt
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+
+      - name: Deploy to Firebase
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_HTTP_REQUEST_TILE }}'
