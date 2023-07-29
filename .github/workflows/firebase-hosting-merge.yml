@@ -20,9 +20,15 @@ jobs:
       - name: Create html files
         run: |
           npm install
-          node parse.js プライバシ・ポリシー privacy_policy
-          node parse.js 利用規約 terms_of_use
-          node parse.js トップ index
+          mkdir -p public/light
+          mkdir -p public/dark
+          node parse.js / privacy_policy default.css プライバシ・ポリシー
+          node parse.js / terms_of_use default.css 利用規約
+          node parse.js / index default.css トップ
+          node parse.js /light/ privacy_policy light.css プライバシ・ポリシー
+          node parse.js /light/ terms_of_use light.css 利用規約
+          node parse.js /dark/ privacy_policy dark.css プライバシ・ポリシー
+          node parse.js /dark/ terms_of_use dark.css 利用規約
           echo ${{ secrets.APP_ADS_TXT }} > public/app-ads.txt
 
       - name: Deploy to Firebase
