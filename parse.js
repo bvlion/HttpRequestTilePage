@@ -1,15 +1,21 @@
 const fs = require('fs')
 const marked = require('marked')
-marked.setOptions({
-  mangle: false,
-  headerIds: false
-})
 
 const argv = process.argv.slice(2)
 const dir = argv[0]
 const name = argv[1]
 const css = argv[2]
 const title = argv[3]
+
+const renderer = new marked.Renderer()
+if (dir !== '/') {
+  renderer.link = (href, title, text) => text
+}
+marked.setOptions({
+  renderer,
+  mangle: false,
+  headerIds: false,
+})
 
 const markdown = fs.readFileSync(`docs/${name}.md`, 'utf8')
 const base = fs.readFileSync('docs/rules.html', 'utf8')
