@@ -22,9 +22,10 @@ jobs:
           npm install
           mkdir -p public/light
           mkdir -p public/dark
+          node parse.js / index default.css トップ
+          node parse.js / changelog default.css 更新履歴
           node parse.js / privacy_policy default.css プライバシ・ポリシー
           node parse.js / terms_of_use default.css 利用規約
-          node parse.js / index default.css トップ
           node parse.js /light/ privacy_policy light.css プライバシ・ポリシー
           node parse.js /light/ terms_of_use light.css 利用規約
           node parse.js /dark/ privacy_policy dark.css プライバシ・ポリシー

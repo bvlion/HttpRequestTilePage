@@ -15,6 +15,7 @@ WearLink は モバイルでも WearOS のスマートウォッチでも利用�
 
 ## リンク
 
+- [リリース履歴](changelog.html)
 - [利用規約](terms_of_use.html)
 - [プライバシー・ポリシー](privacy_policy.html)
 - [ご意見](https://forms.gle/LV4HMAfwb9JxwfRG8)
