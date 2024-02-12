@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Node
         uses: actions/setup-node@v3.5.1
@@ -32,10 +32,8 @@ jobs:
           node parse.js /dark/ terms_of_use dark.css 利用規約
           echo ${{ secrets.APP_ADS_TXT }} > public/app-ads.txt
 
-      - name: Deploy to Firebase
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.0.0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_HTTP_REQUEST_TILE }}'
-          channelId: live
-          projectId: http-request-tile
+        branch: gh-pages
+        folder: public
